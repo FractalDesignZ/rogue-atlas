@@ -1,5 +1,6 @@
 import { computeFork } from "./fork";
 import { forecastAhead } from "./forecast";
+import { COORDINATE_NOTE, representationsFor, rungOf, SOURCE_COORDINATE } from "../atlas/constitution";
 import type { AdapterReport, CompareReport } from "./types";
 
 function kindLine(report: AdapterReport, kind: "known" | "perceived" | "speculative"): string {
@@ -20,10 +21,21 @@ export function writeReading(report: AdapterReport, compare: CompareReport | nul
   const fork = computeFork(report);
   const ahead = forecastAhead(report, 3);
   const nextRefuse = ahead.find((s) => s.refuse);
+  const role = report.coordinateRole ?? SOURCE_COORDINATE[report.source];
+  const reps = representationsFor(report.source);
+  const rung = rungOf({
+    source: report.source,
+    nullP: report.nulls?.pApprox,
+    incrementalValue: false,
+    holdout: false,
+  });
 
   const lines = [
     report.title + ".",
     report.nowCaption,
+    `Coordinate: ${role}. ${report.ingestNote ?? COORDINATE_NOTE[role]}`,
+    `Representations: ${reps.map((r) => `${r.name} (${r.imposition})`).join("; ")}.`,
+    `Ladder: L${rung.level} ${rung.title}. ${rung.note}`,
     `From here: ${horizon.nextTitle}. ${horizon.reading}`,
     fork.refuse
       ? `Refuse the next step. V = ${fork.stayV?.toFixed(2)}. ${fork.reading}`

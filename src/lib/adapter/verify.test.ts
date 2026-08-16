@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { sheafEligible } from "../atlas/constitution";
 import { runProtocol } from "../meridian/analyze";
 import { seriesFor } from "../meridian/domains";
 import { analyzeGeometry } from "../meridian/geometry";
@@ -30,8 +31,7 @@ test("thought field: sheaf gate, two graphs, no GUE", () => {
 test("drill field refuses GUE and keeps the gate honest", () => {
   const report = runAdapter("drill", "", DEFAULT_WEIGHTS, 1);
   const pipe = pipelineOf(report);
-  const sheafOk =
-    report.sheaf.coboundaryNilpotent && report.sheaf.restrictionCompatible;
+  const sheafOk = sheafEligible(report.sheaf);
   const sheaf = pipe.find((s) => s.id === "sheaf");
   const topo = pipe.find((s) => s.id === "topology");
   assert.equal(sheaf?.klass, sheafOk ? "certificate" : "excluded");

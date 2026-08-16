@@ -1,3 +1,4 @@
+import { roleFor } from "../atlas/ingest";
 import { marketSeries, pulseSeries, climateSeries, spectraSeries } from "@/lib/meridian/domains";
 import { ZETA_ZEROS } from "@/lib/meridian/zeros";
 import { clamp } from "@/lib/utils";
@@ -860,10 +861,13 @@ export function runAdapter(
     source === "wellbore" ? states.map((s) => s.t) : values,
     0.55,
   );
+  const coord = roleFor(source, prompt);
   const draftReport = {
     source,
     title: titleFor(source),
     prompt,
+    coordinateRole: coord.role,
+    ingestNote: coord.note,
     states,
     opens,
     regime,
@@ -904,9 +908,9 @@ export function runAdapter(
   } satisfies AdapterReport;
   draftReport.terms = buildTerms(partial);
   draftReport.modes = modeStack(draftReport, curve, mid);
+  draftReport.nulls = runNull(draftReport);
   draftReport.claims = claimLedger(draftReport);
   draftReport.ceiling = metricCeiling(draftReport, draftReport.graphs!);
-  draftReport.nulls = runNull(draftReport);
   draftReport.provenance = provenanceOf(draftReport);
   draftReport.vv = verifyAdapter(draftReport);
   return draftReport;

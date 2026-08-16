@@ -4,9 +4,9 @@ import { AccountChip } from "@/components/account-chip";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { to: "/adapter" as const, label: "Adapter" },
-  { to: "/studio" as const, label: "Studio" },
-  { to: "/library" as const, label: "Library" },
+  { to: "/atlas" as const, label: "Atlas" },
+  { to: "/studio" as const, label: "Research" },
+  { to: "/adapter" as const, label: "Operations" },
   { to: "/method" as const, label: "Method" },
 ];
 
@@ -36,10 +36,10 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         </nav>
         <div className="flex items-center gap-2">
           <Link
-            to="/adapter"
+            to="/atlas"
             className="hidden h-9 items-center rounded-sm bg-accent px-3 text-sm font-medium text-accent-fg sm:inline-flex"
           >
-            Open adapter
+            Open Atlas
           </Link>
           <AccountChip />
         </div>

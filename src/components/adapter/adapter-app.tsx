@@ -25,6 +25,8 @@ import { SeedInspector } from "@/components/adapter/inspector";
 import { NullPanel } from "@/components/adapter/null-panel";
 import { OutcomeTape } from "@/components/adapter/outcome-tape";
 import { PipelineStrip } from "@/components/adapter/pipeline-strip";
+import { RepresentationLab } from "@/components/adapter/representation-lab";
+import { LadderPanel } from "@/components/adapter/ladder-panel";
 import { VvPanel } from "@/components/adapter/vv-panel";
 import { SeedField } from "@/components/adapter/seed-field";
 import { TorusView } from "@/components/adapter/torus-view";
@@ -626,6 +628,14 @@ export function AdapterApp() {
           </section>
 
           <SeedInspector report={report} focus={focus ?? report.now} />
+
+          <RepresentationLab
+            source={source}
+            role={report.coordinateRole}
+            note={report.ingestNote}
+          />
+
+          <LadderPanel source={source} nullP={report.nulls?.pApprox} />
 
           {source === "drill" ? <DrillConsole nowRatio={nowRatio} refuse={fork.refuse} /> : null}
 

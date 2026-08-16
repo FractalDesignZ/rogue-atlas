@@ -169,6 +169,8 @@ export type AdapterReport = {
   source: AdapterSource;
   title: string;
   prompt: string;
+  coordinateRole?: import("../atlas/constitution").CoordinateRole;
+  ingestNote?: string;
   states: ConditionState[];
   opens: OpenSet[];
   regime: ActivityState;

@@ -23,8 +23,9 @@ export function DrillConsole({ nowRatio, refuse }: { nowRatio: number; refuse: b
         β₀ {d.beta0} · β₁ {d.beta1}
       </h2>
       <p className="mt-1 text-xs leading-relaxed text-muted">
-        Sliding-window Rips on (WOB, RPM). A loop is stick-slip. Two loops, whirl. Split
-        components, bounce. Synthetic — not a certified controller.
+        Sliding-window Rips on (WOB, RPM). Stick-slip, whirl, and bounce are
+        candidate Betti names — not physical identities. Synthetic. Not a
+        certified controller. Interlocks stay on L0.
       </p>
       <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
         {(

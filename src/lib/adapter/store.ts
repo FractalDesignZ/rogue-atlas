@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { sniffIngest } from "../atlas/ingest";
 import { runAdapter } from "./engine";
 import { compareFields } from "./compare";
 import { persistField } from "./filtration";
@@ -298,9 +299,16 @@ export const useAdapter = create<AdapterState>((set, get) => ({
   ingestText: (text) => {
     const trimmed = text.trim();
     if (!trimmed) return;
-    const nums = trimmed.match(/-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g);
-    const source = nums && nums.length >= 6 ? "custom" : "thought";
-    set({ source, prompt: trimmed, released: false, selected: null, focus: null, walking: false, nowRatio: 1 });
+    const sniff = sniffIngest(trimmed);
+    set({
+      source: sniff.source,
+      prompt: trimmed,
+      released: false,
+      selected: null,
+      focus: null,
+      walking: false,
+      nowRatio: 1,
+    });
     get().recompute();
   },
   recompute: () => {

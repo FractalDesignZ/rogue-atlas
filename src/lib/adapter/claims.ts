@@ -7,6 +7,7 @@ export type ClaimItem = {
   klass: ClaimClass;
   title: string;
   body: string;
+  extras?: { validated?: boolean; failed?: boolean };
 };
 
 export const CLAIM_LABEL: Record<ClaimClass, string> = {
@@ -21,6 +22,7 @@ export function claimLedger(report: AdapterReport): ClaimItem[] {
   const hol = report.sheaf.meanCurvatureF;
   const mid = report.middleOut;
   const curve = report.curve;
+  const beat = (report.nulls?.pApprox ?? 1) < 0.05;
   return [
     {
       id: "orbit",
@@ -81,6 +83,18 @@ export function claimLedger(report: AdapterReport): ClaimItem[] {
       klass: "excluded",
       title: "GUE is not a universal null",
       body: "GUE and Poisson belong to spectral spacing. A drill manifold, a thought, a latent space need their own justified null.",
+    },
+    {
+      id: "null-beat",
+      klass: "empirical",
+      extras: {
+        validated: beat,
+        failed: !beat,
+      },
+      title: beat ? "Beat the justified null" : "Did not beat the justified null",
+      body: report.nulls
+        ? `p ≈ ${report.nulls.pApprox.toFixed(2)} on ${report.nulls.replicates} ${report.nulls.name} shuffles. A pretty graph is not a finding.`
+        : "No justified null has been run.",
     },
   ];
 }

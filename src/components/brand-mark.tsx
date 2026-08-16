@@ -13,7 +13,7 @@ export function BrandMark({ className }: { className?: string }) {
           strokeLinecap="round"
         />
       </svg>
-      <span className="font-display text-[1.15rem] tracking-tight">Meridian</span>
+      <span className="font-display text-[1.15rem] tracking-tight">Atlas</span>
     </span>
   );
 }

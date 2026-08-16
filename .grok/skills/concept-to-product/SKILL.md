@@ -36,6 +36,7 @@ Do not reach for **`building-games`** unless the instrument is a game.
 - `references/gpu-and-stack.md` — browser-first, high-end GPU later, no fake backends.
 - `references/anti-overclaim.md` — the failure modes that kill scientific products.
 - `references/meridian-worked-example.md` — this repo as the worked instance.
+- `references/rogue-atlas.md` — Research / Operations / Audit; the synthesis constitution.
 
 ---
 

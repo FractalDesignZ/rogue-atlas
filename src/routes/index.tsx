@@ -63,27 +63,27 @@ function Home() {
           <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
             <div>
               <p className="text-[11px] tracking-[0.22em] text-subtle uppercase">
-                Future adapter
+                Rogue Atlas
               </p>
               <h1 className="mt-4 font-display text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
-                Map what is
+                See the geometry.
                 <br />
-                to what it can still become.
+                Test the claim.
               </h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-                An auditable geometry studio. Walk a thought, a series, a well, a hole.
-                Every number carries a claim class — identity, certificate, empirical, or
-                excluded. Time is typed. Local is not recurrence. Not a new physical law.
+                An evidence-aware geometric intelligence studio. It turns sequential
+                data into geometry and topology — then keeps asking what the
+                representation imposed, and what the data independently supports.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg">
-                  <Link to="/adapter">
-                    Open the adapter
+                  <Link to="/atlas">
+                    Open Atlas
                     <Wind className="size-4" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link to="/studio">Discovery studio</Link>
+                  <Link to="/studio">Zeta reference</Link>
                 </Button>
               </div>
               <p className="mt-6 max-w-md text-xs leading-relaxed text-subtle">
@@ -209,7 +209,7 @@ function Home() {
           <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-xs text-subtle sm:flex-row sm:items-center sm:justify-between sm:px-6">
             <div className="flex items-center gap-2">
               <CircleDot className="size-3.5" />
-              Meridian
+              Meridian kernel. Atlas platform. Rogue is the drilling vertical.
             </div>
             <p>Finite certificates. Continuous plans. Not a proof of RH.</p>
           </div>

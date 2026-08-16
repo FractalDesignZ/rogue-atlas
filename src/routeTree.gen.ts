@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdapterRouteImport } from './routes/adapter'
+import { Route as AtlasRouteImport } from './routes/atlas'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MethodRouteImport } from './routes/method'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdapterRoute = AdapterRouteImport.update({
   id: '/adapter',
   path: '/adapter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtlasRoute = AtlasRouteImport.update({
+  id: '/atlas',
+  path: '/atlas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -56,6 +62,7 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adapter': typeof AdapterRoute
+  '/atlas': typeof AtlasRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/method': typeof MethodRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adapter': typeof AdapterRoute
+  '/atlas': typeof AtlasRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/method': typeof MethodRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/adapter': typeof AdapterRoute
+  '/atlas': typeof AtlasRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/method': typeof MethodRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/adapter'
+    | '/atlas'
     | '/library'
     | '/login'
     | '/method'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/adapter'
+    | '/atlas'
     | '/library'
     | '/login'
     | '/method'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/adapter'
+    | '/atlas'
     | '/library'
     | '/login'
     | '/method'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdapterRoute: typeof AdapterRoute
+  AtlasRoute: typeof AtlasRoute
   LibraryRoute: typeof LibraryRoute
   LoginRoute: typeof LoginRoute
   MethodRoute: typeof MethodRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/adapter'
       fullPath: '/adapter'
       preLoaderRoute: typeof AdapterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atlas': {
+      id: '/atlas'
+      path: '/atlas'
+      fullPath: '/atlas'
+      preLoaderRoute: typeof AtlasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdapterRoute: AdapterRoute,
+  AtlasRoute: AtlasRoute,
   LibraryRoute: LibraryRoute,
   LoginRoute: LoginRoute,
   MethodRoute: MethodRoute,

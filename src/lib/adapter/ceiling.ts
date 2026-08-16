@@ -1,3 +1,4 @@
+import { sheafEligible } from "../atlas/constitution";
 import type { AdapterReport } from "./types";
 import type { GraphReport } from "./graphs";
 
@@ -18,8 +19,7 @@ export type CeilingReport = {
 export function metricCeiling(report: AdapterReport, graph: GraphReport): CeilingReport {
   const pairN = (report.states.length * (report.states.length - 1)) / 2;
   const long = report.persistence.longLived;
-  const sheafOk =
-    report.sheaf.coboundaryNilpotent && report.sheaf.restrictionCompatible;
+  const sheafOk = sheafEligible(report.sheaf);
   const layers: CeilingLayer[] = [
     {
       id: "pair",

@@ -1,3 +1,4 @@
+import { sheafEligible } from "../atlas/constitution";
 import { analyzeGeometry } from "../meridian/geometry";
 import { analyzeOperator } from "../meridian/operator";
 import type { GeometryReport, OperatorReport } from "../meridian/types";
@@ -66,8 +67,7 @@ function sellsRestriction(text: string): boolean {
 
 export function verifyReport(report: AdapterReport): VerifyReport {
   const t0 = Date.now();
-  const sheafOk =
-    report.sheaf.coboundaryNilpotent && report.sheaf.restrictionCompatible;
+  const sheafOk = sheafEligible(report.sheaf);
   const pipe = pipelineOf(report);
   const sheafStage = pipe.find((s) => s.id === "sheaf");
   const topoStage = pipe.find((s) => s.id === "topology");

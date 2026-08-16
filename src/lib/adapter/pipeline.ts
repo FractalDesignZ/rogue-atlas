@@ -1,3 +1,4 @@
+import { sheafEligible } from "../atlas/constitution";
 import type { ClaimClass } from "./claims";
 import type { AbstractionLevel, AdapterReport, GraphKind } from "./types";
 
@@ -16,8 +17,7 @@ export type PipelineStage = {
 };
 
 export function pipelineOf(report: AdapterReport): PipelineStage[] {
-  const sheafOk =
-    report.sheaf.coboundaryNilpotent && report.sheaf.restrictionCompatible;
+  const sheafOk = sheafEligible(report.sheaf);
   const p = report.nulls?.pApprox;
   return [
     {

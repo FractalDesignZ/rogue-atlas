@@ -14,7 +14,7 @@
     "preview": "vite preview --host 0.0.0.0 --port 8080",
     "typecheck": "tsc --noEmit",
     "test": "node --test 'scripts/**/*.test.mjs' && npm run test:vv",
-    "test:vv": "node --experimental-strip-types --import ./scripts/register-alias.mjs --test src/lib/adapter/verify.test.ts",
+    "test:vv": "node --experimental-strip-types --import ./scripts/register-alias.mjs --test src/lib/adapter/verify.test.ts src/lib/atlas/constitution.test.ts",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
